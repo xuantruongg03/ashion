@@ -49,11 +49,10 @@ $type = @isset($_GET['type']) ? $_GET['type'] : null;
                                         </div>
                                         <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">Áo khoát</a></li>
-                                                    <li><a href="#">Sơ mi</a></li>
-                                                    <li><a href="#">Váy</a></li>
-                                                    <li><a href="#">Quần Jeans</a></li>
+                                            <ul>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Áo">Áo</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Váy">Váy</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Quần">Quần</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -64,12 +63,9 @@ $type = @isset($_GET['type']) ? $_GET['type'] : null;
                                         </div>
                                         <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
-                                                <ul>
-                                                    <li><a href="#">Áo thun</a></li>
-                                                    <li><a href="#">Áo khoát</a></li>
-                                                    <li><a href="#">Sơ mi</a></li>
-                                                    <li><a href="#">Quần jeans</a></li>
-                                                    <li><a href="#">Quần short</a></li>
+                                            <ul>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Áo">Áo</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Quần">Quần</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -82,9 +78,9 @@ $type = @isset($_GET['type']) ? $_GET['type'] : null;
                                 <h4>Sản phẩm theo size</h4>
                             </div>
                             <div class="size__list">
-                                <label for="xxs">
-                                    xxs
-                                    <input type="checkbox" id="xxs">
+                                <label for="xxl">
+                                    xxl
+                                    <input type="checkbox" id="xxl">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="xs">
@@ -129,7 +125,8 @@ $type = @isset($_GET['type']) ? $_GET['type'] : null;
                 <div class="col-lg-9 col-md-9">
                     <div class="row">
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_sale > 0 order by product_created_at";
+                        // $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products where product_sale > 0 order by product_created_at";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products where product_sale > 0 " . ($type != null ? "where product_type = '" . $type . "' and product_sub_type = '" . $subtype . "' " : "") . " order by product_created_at";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {
@@ -141,22 +138,77 @@ $type = @isset($_GET['type']) ? $_GET['type'] : null;
                             $sale = $product->get_sale();
                             $new = false;
                             $out_of_stock = false;
+                            $size = $product->get_size();
                             $id = $product->get_product_id();
                             include dirname(dirname(__FILE__)) . "/components/product_item/product_item2.php";
                         }
                         ?>
-                        <div class="col-lg-12 text-center">
+                        <!-- <div class="col-lg-12 text-center">
                             <div class="pagination__option">
                                 <a href="#">1</a>
                                 <a href="#">2</a>
                                 <a href="#">3</a>
                                 <a href="#"><i class="fa fa-angle-right"></i></a>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+                    function filter() {
+                        const xxl = document.getElementById('xxl').checked;
+                        const xs = document.getElementById('xs').checked;
+                        const xss = document.getElementById('xss').checked;
+                        const s = document.getElementById('s').checked;
+                        const m = document.getElementById('m').checked;
+                        const ml = document.getElementById('ml').checked;
+                        const l = document.getElementById('l').checked;
+                        const xl = document.getElementById('xl').checked;
+                        const box_products = document.getElementById('box_products');
+                        const product_item2 = document.getElementsByClassName('product_item2');
+
+                        if (!xxl && !xs && !xss && !s && !m && !ml && !l && !xl) {
+                            for (let i = 0; i < product_item2.length; i++) {
+                                product_item2[i].style.display = 'block';
+                            }
+                            return;
+                        }
+
+                        for (let i = 0; i < product_item2.length; i++) {
+                            const size = product_item2[i].querySelector('#size').value;
+                            if (size == 'xxl' && xxl) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 'xs' && xs) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 'xss' && xss) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 's' && s) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 'm' && m) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 'ml' && ml) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 'l' && l) {
+                                product_item2[i].style.display = 'block';
+                            } else if (size == 'xl' && xl) {
+                                product_item2[i].style.display = 'block';
+                            } else {
+                                product_item2[i].style.display = 'none';
+                            }
+                        }
+                    }
+
+                    document.getElementById('xxl').addEventListener('change', filter);
+                    document.getElementById('xs').addEventListener('change', filter);
+                    document.getElementById('xss').addEventListener('change', filter);
+                    document.getElementById('s').addEventListener('change', filter);
+                    document.getElementById('m').addEventListener('change', filter);
+                    document.getElementById('ml').addEventListener('change', filter);
+                    document.getElementById('l').addEventListener('change', filter);
+                    document.getElementById('xl').addEventListener('change', filter);
+                    
+                </script>
     </section>
     <!-- Shop Section End -->
 

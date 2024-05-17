@@ -93,8 +93,6 @@ function get_product($sql_product, $sql_image)
     $rs = array();
 
     // Lấy danh sách sản phẩm
-    // $products = "SELECT product_id, product_name, product_price, product_rate, product_type FROM products order by product_created_at desc limit 8";
-    // $product_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
     $result_products = mysqli_query($conn, $sql_product);
     $result_product_image = mysqli_query($conn, $sql_image);
     $image = array();

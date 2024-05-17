@@ -25,7 +25,7 @@
                                 thời trang nữ luôn biến hóa không ngừng để phù hợp với mọi hoàn cảnh và sở thích.
                                 Ở đây chúng tôi có những gì bạn cần.
                             </p>
-                            <a href="#">Mua ngay</a>
+                            <a href="/ashion/src/pages/shop.php">Mua ngay</a>
                         </div>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
                                     <h4>Thời trang nam</h4>
                                     <!-- <p>358 sản phẩm</p> -->
                                     <p><?php echo get_number_product('Nam') ?> sản phẩm</p>
-                                    <a href="#">Mua ngay</a>
+                                    <a href="/ashion/src/pages/shop.php">Mua ngay</a>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                     <h4>Thời trang trẻ em</h4>
                                     <!-- <p>273 sản phẩm</p> -->
                                     <p><?php echo get_number_product('Trẻ em') ?> sản phẩm</p>
-                                    <a href="#">Mua ngay</a>
+                                    <a href="/ashion/src/pages/shop.php">Mua ngay</a>
                                 </div>
                             </div>
                         </div>
@@ -125,21 +125,21 @@
                             <div class="banner__text">
                                 <span>Uy tín</span>
                                 <h2>Uy tín tạo nên thương hiệu</h2>
-                                <a href="#">Mua ngay</a>
+                                <a href="/ashion/src/pages/shop.php">Mua ngay</a>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>Chất lượng</span>
                                 <h2>Cam kết đầu ra sản phẩm</h2>
-                                <a href="#">Mua ngay</a>
+                                <a href="/ashion/src/pages/shop.php">Mua ngay</a>
                             </div>
                         </div>
                         <div class="banner__item">
                             <div class="banner__text">
                                 <span>The Chloe Collection</span>
                                 <h2>The Project Jacket</h2>
-                                <a href="#">Mua ngay</a>
+                                <a href="/ashion/src/pages/shop.php">Mua ngay</a>
                             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
                             <h4>Thịnh hành</h4>
                         </div>
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_trending = 1 order by product_created_at desc limit 8";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products where product_trending = 1 order by product_created_at desc limit 3";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {
@@ -183,7 +183,7 @@
                             <h4>Mua nhiều nhất</h4>
                         </div>
                         <?php
-                        $a = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_best_seller = 1 order by product_created_at desc limit 8";
+                        $a = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products where product_best_seller = 1 order by product_created_at desc limit 3";
                         $b = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($a, $b);
                         foreach ($productList as $product) {
@@ -207,7 +207,7 @@
                             <h4>Nổi bật nhất</h4>
                         </div>
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_featured = 1 order by product_created_at desc limit 8";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products where product_featured = 1 order by product_created_at desc limit 3";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {

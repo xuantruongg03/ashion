@@ -53,7 +53,7 @@ if (isset($_SESSION['username'])) {
                             </li>
                             <!-- <li><a href="#">Thời trang nữ</a></li>
                         <li><a href="#">Thời trang nam</a></li> -->
-                            <li><a href="/ashion/src/pages/Shop.php?type=sale">Sale</a></li>
+                            <li><a href="/ashion/src/pages/Sale.php">Sale</a></li>
                             <li>
                                 <a href="/ashion/src/pages/Shop.php" id="">Sản phẩm</a>
                                 <ul class="dropdown" style="width: 200px;">
@@ -64,7 +64,7 @@ if (isset($_SESSION['username'])) {
                                         <a href="/ashion/src/pages/Shop.php?type=nữ">Thời trang nữ</a>
                                     </li>
                                     <li>
-                                        <a href="/ashion/src/pages/Shop.php?type=child">Trẻ em</a>
+                                        <a href="/ashion/src/pages/Shop.php?type=Trẻ em">Trẻ em</a>
                                     </li>
                                 </ul>
                             </li>

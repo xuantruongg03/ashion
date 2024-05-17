@@ -11,9 +11,9 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -51,10 +51,9 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                                         <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Áo khoát">Áo khoát</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Áo sơ mi">Áo sơ mi</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Áo">Áo</a></li>
                                                     <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Váy">Váy</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Quần jeans">Quần Jeans</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Quần">Quần</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -66,11 +65,8 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                                         <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Áo thun">Áo thun</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Áo Khoát">Áo khoát</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Sơ mi">Sơ mi</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Quần jeans">Quần jeans</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Quần short">Quần short</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Áo">Áo</a></li>
+                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Quần">Quần</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -83,9 +79,9 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                                 <h4>Sản phẩm theo size</h4>
                             </div>
                             <div class="size__list">
-                                <label for="xxs">
-                                    xxs
-                                    <input type="checkbox" name="xxs" id="xxs">
+                                <label for="xxl">
+                                    xxl
+                                    <input type="checkbox" name="xxl" id="xxl">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="xs">
@@ -130,7 +126,7 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                 <div class="col-lg-9 col-md-9">
                     <div class="row" id="box_products">
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products " . ($type == "sale" ? "where product_sale > 0" : ($type != null ? "where product_type = '" . $type . "' and product_sub_type = '" . $subtype . "' " : "")) . " order by product_created_at";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products " . ($type != null ? "where product_type = '" . $type . "'" . ($subtype != null ? "and product_sub_type = '" . $subtype . "'" : "") : "") . " order by product_created_at";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {
@@ -159,7 +155,7 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                 </div>
                 <script>
                     function filter() {
-                        const xxs = document.getElementById('xxs').checked;
+                        const xxl = document.getElementById('xxl').checked;
                         const xs = document.getElementById('xs').checked;
                         const xss = document.getElementById('xss').checked;
                         const s = document.getElementById('s').checked;
@@ -170,7 +166,7 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                         const box_products = document.getElementById('box_products');
                         const product_item2 = document.getElementsByClassName('product_item2');
 
-                        if (!xxs && !xs && !xss && !s && !m && !ml && !l && !xl) {
+                        if (!xxl && !xs && !xss && !s && !m && !ml && !l && !xl) {
                             for (let i = 0; i < product_item2.length; i++) {
                                 product_item2[i].style.display = 'block';
                             }
@@ -179,7 +175,7 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
 
                         for (let i = 0; i < product_item2.length; i++) {
                             const size = product_item2[i].querySelector('#size').value;
-                            if (size == 'xxs' && xxs) {
+                            if (size == 'xxl' && xxl) {
                                 product_item2[i].style.display = 'block';
                             } else if (size == 'xs' && xs) {
                                 product_item2[i].style.display = 'block';
@@ -201,7 +197,7 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                         }
                     }
 
-                    document.getElementById('xxs').addEventListener('change', filter);
+                    document.getElementById('xxl').addEventListener('change', filter);
                     document.getElementById('xs').addEventListener('change', filter);
                     document.getElementById('xss').addEventListener('change', filter);
                     document.getElementById('s').addEventListener('change', filter);
