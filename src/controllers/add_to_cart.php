@@ -21,11 +21,13 @@ if (isset($_POST['product_id'])) {
         $sql = "INSERT INTO cart (user_id, product_id, cart_quantity, total_price) VALUES ($user_id, $product_id, 1, $product_price)";
         $result = mysqli_query($conn, $sql);
         if ($result) {
-            echo '<script>alert("Thêm vào giỏ hàng thành công!")</script>';
-            header('Location: /ashion/index.php');
+            echo '<script>alert("Thêm vào giỏ hàng thành công!")
+                window.location.href = "/ashion/src/pages/cart.php";
+            </script>';
         } else {
-            echo '<script>alert("Thêm vào giỏ hàng thất bại!")</script>';
-            header('Location: /ashion/index.php');
+            echo '<script>alert("Thêm vào giỏ hàng thất bại!")
+                window.location.href = "/ashion/src/pages/cart.php";
+            </script>';
         }
     } else {
         $row = mysqli_fetch_assoc($result);
@@ -36,11 +38,13 @@ if (isset($_POST['product_id'])) {
         $e = mysqli_query($conn, $c);
         $f = mysqli_query($conn, $d);
         if ($f && $e) {
-            echo '<script>alert("Thêm vào giỏ hàng thành công!")</script>';
-            header('Location: /ashion/index.php');
+            echo '<script>alert("Thêm vào giỏ hàng thành công!")
+                window.location.href = "/ashion/src/pages/cart.php";
+            </script>';
         } else {
-            echo '<script>alert("Thêm vào giỏ hàng thất bại!")</script>';
-            header('Location: /ashion/index.php');
+            echo '<script>alert("Thêm vào giỏ hàng thất bại!")
+                window.location.href = "/ashion/src/pages/cart.php";
+            </script>';
         }
     }
 }

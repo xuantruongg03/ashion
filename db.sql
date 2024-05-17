@@ -34,7 +34,7 @@ CREATE TABLE `cart` (
   KEY `product_id` (`product_id`),
   CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
   CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES (15,2,2,1,NULL,250000),(16,2,1,1,NULL,200000),(17,4,1,1,NULL,200000);
+INSERT INTO `cart` VALUES (15,2,2,1,NULL,250000),(16,2,1,1,NULL,200000),(17,4,1,1,NULL,200000),(21,1,1,1,NULL,200000);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,6 +132,8 @@ CREATE TABLE `products` (
   `product_best_seller` tinyint(1) DEFAULT '0',
   `product_featured` tinyint(1) DEFAULT '0',
   `product_size` varchar(50) DEFAULT NULL,
+  `product_sale` float DEFAULT '0',
+  `product_sub_type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`product_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -142,7 +144,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Áo thun nam','Áo thun nam được làm từ chất liệu cotton 100%, giúp thoát mồ hôi và tạo cảm giác thoải mái cho người mặc. Thiết kế đơn giản nhưng không kém phần lịch lãm, phù hợp cho mọi hoàn cảnh từ hàng ngày đến đi tiệc. Áo có các size từ S đến XL, phù hợp với mọi dáng người. Đặc biệt, áo thun nam này có các màu sắc phong phú như đen, xanh navy, xám, trắng và nhiều màu sắc khác nhau để bạn dễ dàng lựa chọn phong cách.',200000,4,50,'Nam','2024-03-29 15:17:23',1,0,1,NULL),(2,'Áo sơ mi nữ','Áo sơ mi nữ với thiết kế tinh tế và chất liệu cotton cao cấp, mang lại sự thoải mái cho người mặc trong mọi hoàn cảnh. Được may tỉ mỉ từ những đường may chắc chắn, áo sơ mi này không chỉ là trang phục thích hợp cho công sở mà còn dễ dàng kết hợp với các trang phục khác như chân váy hoặc quần jean để tạo nên phong cách cá nhân riêng. Sản phẩm có các size từ XS đến L và có sẵn trong các màu sắc như trắng, xanh pastel, hồng, vàng nhat và nhiều màu sắc khác.',250000,5,30,'Nữ','2024-03-29 15:17:23',0,1,0,NULL);
+INSERT INTO `products` VALUES (1,'Áo thun nam','Áo thun nam được làm từ chất liệu cotton 100%, giúp thoát mồ hôi và tạo cảm giác thoải mái cho người mặc. Thiết kế đơn giản nhưng không kém phần lịch lãm, phù hợp cho mọi hoàn cảnh từ hàng ngày đến đi tiệc. Áo có các size từ S đến XL, phù hợp với mọi dáng người. Đặc biệt, áo thun nam này có các màu sắc phong phú như đen, xanh navy, xám, trắng và nhiều màu sắc khác nhau để bạn dễ dàng lựa chọn phong cách.',200000,4,50,'Nam','2024-03-29 15:17:23',1,0,1,'xxs',2,'Áo thun'),(2,'Áo sơ mi nữ','Áo sơ mi nữ với thiết kế tinh tế và chất liệu cotton cao cấp, mang lại sự thoải mái cho người mặc trong mọi hoàn cảnh. Được may tỉ mỉ từ những đường may chắc chắn, áo sơ mi này không chỉ là trang phục thích hợp cho công sở mà còn dễ dàng kết hợp với các trang phục khác như chân váy hoặc quần jean để tạo nên phong cách cá nhân riêng. Sản phẩm có các size từ XS đến L và có sẵn trong các màu sắc như trắng, xanh pastel, hồng, vàng nhat và nhiều màu sắc khác.',250000,5,30,'Nữ','2024-03-29 15:17:23',0,1,0,'l',0,'Áo sơ mi');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -183,4 +185,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-14 16:57:28
+-- Dump completed on 2024-05-17 16:48:59

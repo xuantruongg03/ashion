@@ -8,7 +8,7 @@
         + product_rate: Đánh giá của sản phẩm
         + product_price: Giá của sản phẩm
         + new: Sản phẩm mới hay không (true/false)
-        + sale: Sản phẩm đang giảm giá hay không (true/false)
+        + sale: Sản phẩm đang giảm giá hay không (% giảm giá)
         + type: Loại sản phẩm
         + out_of_stock: Sản phẩm hết hàng hay không (true/false)
  -->

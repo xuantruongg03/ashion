@@ -28,6 +28,14 @@ if (
         header('Location: /ashion/src/pages/Cart.php');
     }
     while ($row = mysqli_fetch_assoc($result)) {
+        //check product quantity
+        $sql = "SELECT product_quantity FROM products WHERE product_id = " . $row['product_id'];
+        $result = mysqli_query($conn, $sql);
+        $product_quantity = mysqli_fetch_assoc($result)['product_quantity'];
+        if ($product_quantity < $row['cart_quantity']) {
+            echo '<script>alert("Sản phẩm ' . $row['product_name'] . ' không đủ số lượng")</script>';
+        }
+
         $product_id = $row['product_id'];
         $product_name = $row['product_name'];
         $product_price = $row['product_price'];

@@ -10,10 +10,11 @@ class ProductModel
     public $sale;
     public $type;
     public $out_of_stock;
+    public $product_size;
 
 
     // Constructor
-    public function __construct($product_id, $product_name, $product_price, $product_rate, $product_image, $new, $sale, $type, $out_of_stock)
+    public function __construct($product_id, $product_name, $product_price, $product_rate, $product_image, $new, $sale, $type, $out_of_stock, $product_size)
     {
         $this->product_id = $product_id;
         $this->product_name = $product_name;
@@ -24,6 +25,7 @@ class ProductModel
         $this->sale = $sale;
         $this->type = $type;
         $this->out_of_stock = $out_of_stock;
+        $this->product_size = $product_size;
     }
 
     //Getter
@@ -71,6 +73,11 @@ class ProductModel
     {
         return $this->out_of_stock;
     }
+
+    public function get_size()
+    {
+        return $this->product_size;
+    }
 }
 function get_product($sql_product, $sql_image)
 {
@@ -101,11 +108,12 @@ function get_product($sql_product, $sql_image)
             $product_name = $row['product_name'];
             $product_price = $row['product_price'];
             $product_rate = $row['product_rate'];
-            $sale = false;
+            $sale = $row['product_sale'];
             $new = false;
             $id = $row['product_id'];
             $out_of_stock = false;
-            $product = new ProductModel($id, $product_name, $product_price, $product_rate, $product_image, $new, $sale, $type, $out_of_stock);
+            $product_size = $row['product_size'];
+            $product = new ProductModel($id, $product_name, $product_price, $product_rate, $product_image, $new, $sale, $type, $out_of_stock, $product_size);
             array_push($rs, $product);
         }
     }

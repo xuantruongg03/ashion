@@ -1,8 +1,8 @@
-<?php include "src/functions/get_products.php"; ?>
+<?php include dirname(dirname(__FILE__)) . "/functions/get_products.php"; ?>
 
-<?php include 'src/components/header/header.php' ?>
+<?php include dirname(dirname(__FILE__)) . '/components/header/header.php' ?>
 
-<?php include 'src/functions/get_number_product.php' ?>
+<?php include dirname(dirname(__FILE__)) . '/functions/get_number_product.php' ?>
 
 <body>
     <!-- <div id="preloder">
@@ -15,8 +15,8 @@
     <section class="categories">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-lg-6 p-0">
-                    <div class="categories__item categories__large__item set-bg" data-setbg="src/img/categories/category-1.jpg">
+                <div class="col-lg-6 p-0" style="flex: 0 0 70% !important; max-width: 75%;">
+                    <div class="categories__item categories__large__item set-bg" data-setbg="/ashion/src/img/categories/category-1.jpg"?>
                         <div class="categories__text">
                             <h1>Thời trang nữ</h1>
                             <p>
@@ -29,10 +29,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
-                    <div class="row">
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="src/img/categories/category-2.jpg">
+                <div class="col-lg-x" style="flex: 0 0 30% !important; width: 100%">
+                    <div class="col" style="padding:  0 !important;">
+                        <div class=" p-0">
+                            <div class="categories__item set-bg" data-setbg="/ashion/src/img/categories/category-2.jpg">
                                 <div class="categories__text">
                                     <h4>Thời trang nam</h4>
                                     <!-- <p>358 sản phẩm</p> -->
@@ -41,8 +41,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6 p-0">
-                            <div class="categories__item set-bg" data-setbg="src/img/categories/category-3.jpg">
+                        <div class="p-0">
+                            <div class="categories__item set-bg" data-setbg="/ashion/src/img/categories/category-3.jpg">
                                 <div class="categories__text">
                                     <h4>Thời trang trẻ em</h4>
                                     <!-- <p>273 sản phẩm</p> -->
@@ -81,7 +81,7 @@
                 <!-- Lấy danh sách sản phẩm và hieenr thị -->
                 <?php
                 // Thêm file connectDB.php
-                include "src/config/connectDB.php";
+                include dirname(dirname(__FILE__)) . "/config/connectDB.php";
 
                 // Lấy danh sách sản phẩm
                 $products = "SELECT product_id, product_name, product_price, product_rate, product_type FROM products order by product_created_at desc limit 8";
@@ -103,7 +103,7 @@
                         $new = false;
                         $out_of_stock = false;
                         $id = $row['product_id'];
-                        include "src/components/product_item/product_item.php";
+                        include dirname(dirname(__FILE__)) . "/components/product_item/product_item.php";
                     }
                 } else {
                     echo "0 results";
@@ -116,7 +116,7 @@
     <!-- Product Section End -->
 
     <!-- Banner Section Begin -->
-    <section class="banner set-bg" data-setbg="src/img/banner/banner-1.jpg">
+    <section class="banner set-bg" data-setbg="/ashion/src/img/banner/banner-1.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-xl-7 col-lg-8 m-auto">
@@ -159,7 +159,7 @@
                             <h4>Thịnh hành</h4>
                         </div>
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type FROM products where product_trending = 1 order by product_created_at desc limit 8";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_trending = 1 order by product_created_at desc limit 8";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {
@@ -172,7 +172,7 @@
                             $new = false;
                             $out_of_stock = false;
                             $id = $product->get_product_id();
-                            include "src/components/product_item/trend_item.php";
+                            include dirname(dirname(__FILE__)) . "/components/product_item/trend_item.php";
                         }
                         ?>
                     </div>
@@ -183,7 +183,7 @@
                             <h4>Mua nhiều nhất</h4>
                         </div>
                         <?php
-                        $a = "SELECT product_id, product_name, product_price, product_rate, product_type FROM products where product_best_seller = 1 order by product_created_at desc limit 8";
+                        $a = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_best_seller = 1 order by product_created_at desc limit 8";
                         $b = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($a, $b);
                         foreach ($productList as $product) {
@@ -196,7 +196,7 @@
                             $new = false;
                             $out_of_stock = false;
                             $id = $product->get_product_id();
-                            include "src/components/product_item/trend_item.php";
+                            include dirname(dirname(__FILE__)) ."/components/product_item/trend_item.php";
                         }
                         ?>
                     </div>
@@ -207,7 +207,7 @@
                             <h4>Nổi bật nhất</h4>
                         </div>
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type FROM products where product_featured = 1 order by product_created_at desc limit 8";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_featured = 1 order by product_created_at desc limit 8";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {
@@ -220,7 +220,7 @@
                             $new = false;
                             $out_of_stock = false;
                             $id = $product->get_product_id();
-                            include "src/components/product_item/trend_item.php";
+                            include dirname(dirname(__FILE__)) . "/components/product_item/trend_item.php";
                         }
                         ?>
                     </div>
@@ -236,7 +236,7 @@
             <div class="row">
                 <div class="col-lg-6 p-0">
                     <div class="discount__pic">
-                        <img src="src/img/discount.jpg" alt="" />
+                        <img src="/ashion/src/img/discount.jpg" alt="" />
                     </div>
                 </div>
                 <div class="col-lg-6 p-0">
@@ -309,5 +309,5 @@
     </section>
     <!-- Services Section End -->
 
-    <?php include 'src/components/footer/footer.php' ?>
+    <?php include dirname(dirname(__FILE__)) . '/components/footer/footer.php' ?>
 </body>

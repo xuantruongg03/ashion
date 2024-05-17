@@ -42,32 +42,29 @@ if (isset($_SESSION['username'])) {
             <div class="row">
                 <div class="col-xl-3 col-lg-2">
                     <div class="header__logo" style="padding: 0;">
-                        <a href="/ashion/index.php"><img src="/ashion/src/img/logo.jpg" alt="" /></a>
+                        <a href="/ashion/src/pages/home.php"><img src="/ashion/src/img/logo.jpg" alt="" /></a>
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-7">
                     <nav class="header__menu">
                         <ul>
                             <li class="active" id="index.php">
-                                <a href="/ashion/index.php">Trang chủ</a>
+                                <a href="/ashion/src/pages/home.php">Trang chủ</a>
                             </li>
                             <!-- <li><a href="#">Thời trang nữ</a></li>
                         <li><a href="#">Thời trang nam</a></li> -->
-                            <li><a href="/ashion/src/pages/Shop.php">Sản phẩm</a></li>
+                            <li><a href="/ashion/src/pages/Shop.php?type=sale">Sale</a></li>
                             <li>
-                                <a href="#" id="">Danh mục</a>
+                                <a href="/ashion/src/pages/Shop.php" id="">Sản phẩm</a>
                                 <ul class="dropdown" style="width: 200px;">
                                     <li>
-                                        <a href="/ashion/src/pages/Shop.php?type=male">Thời trang nam</a>
+                                        <a href="/ashion/src/pages/Shop.php?type=nam">Thời trang nam</a>
                                     </li>
                                     <li>
-                                        <a href="/ashion/src/pages/Shop.php?type=female">Thời trang nữ</a>
+                                        <a href="/ashion/src/pages/Shop.php?type=nữ">Thời trang nữ</a>
                                     </li>
                                     <li>
-                                        <a href="/ashion/src/pages/Shop.php?type=kid">Thời trang trẻ em</a>
-                                    </li>
-                                    <li>
-                                        <a href="/ashion/src/pages/Shop.php?type=accessory">Trang sức</a>
+                                        <a href="/ashion/src/pages/Shop.php?type=child">Trẻ em</a>
                                     </li>
                                 </ul>
                             </li>
@@ -154,8 +151,8 @@ if (isset($_SESSION['username'])) {
         <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch">+</div>
-                <form class="search-model-form">
-                    <input type="text" id="search-input" placeholder="Tìm kiếm.....">
+                <form class="search-model-form" action="/ashion/src/controllers/find.php">
+                    <input type="text" name="search" id="search" placeholder="Tìm kiếm.....">
                 </form>
             </div>
         </div>

@@ -1,4 +1,6 @@
-<div class="col-lg-4 col-md-6">
+<form action="/ashion/src/controllers/add_to_cart.php" method="post" class="col-lg-4 col-md-6 product_item2">
+<input type="text" hidden name="product_id" value="<?php echo $id ?>">
+<input type="text" hidden id="size" name="size" value="<?php echo $size ?>">
     <div class="product__item">
         <div class="product__item__pic set-bg" data-setbg="<?php echo $product_image ?>">
             <?php
@@ -13,9 +15,15 @@
             }
             ?>
             <ul class="product__hover">
-                <li><a href="<?php echo $product_image ?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-                <li><a href="#"><span class="icon_bag_alt"></span></a></li>
+                <li>
+                    <a href="<?php echo $product_image ?>" class="image-popup"><span class="arrow_expand"></span></a>
+                </li>
+                <li>
+                    <a href="#" title="Thêm vào yêu thích"><span class="icon_heart_alt"></span></a>
+                </li>
+                <li>
+                    <button type="submit" style="background: none; border:none" title="Thêm vào giỏ hàng"><a href="#"><span class="icon_bag_alt"></span></a></button>
+                </li>
             </ul>
         </div>
         <div class="product__item__text">
@@ -35,4 +43,4 @@
             <div class="product__price"><?php echo number_format($product_price, 0, '', '.') ?> VNĐ</div>
         </div>
     </div>
-</div>
+</form>

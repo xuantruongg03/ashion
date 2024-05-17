@@ -6,14 +6,13 @@ include dirname(dirname(__FILE__)) . '/components/header/header.php';
 
 <?php
 $type = @isset($_GET['type']) ? $_GET['type'] : null;
-$subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
 ?>
 
 <body>
     <!-- Page Preloder -->
-    <div id="preloder">
+    <!-- <div id="preloder">
         <div class="loader"></div>
-    </div>
+    </div> -->
 
     <!-- Offcanvas Menu Begin -->
     <div class="offcanvas-menu-overlay"></div>
@@ -51,10 +50,10 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                                         <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Áo khoát">Áo khoát</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Áo sơ mi">Áo sơ mi</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Váy">Váy</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nữ&subtype=Quần jeans">Quần Jeans</a></li>
+                                                    <li><a href="#">Áo khoát</a></li>
+                                                    <li><a href="#">Sơ mi</a></li>
+                                                    <li><a href="#">Váy</a></li>
+                                                    <li><a href="#">Quần Jeans</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -66,11 +65,11 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                                         <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
                                             <div class="card-body">
                                                 <ul>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Áo thun">Áo thun</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Áo Khoát">Áo khoát</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Sơ mi">Sơ mi</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Quần jeans">Quần jeans</a></li>
-                                                    <li><a href="/ashion/src/pages/Shop.php?type=Nam&subtype=Quần short">Quần short</a></li>
+                                                    <li><a href="#">Áo thun</a></li>
+                                                    <li><a href="#">Áo khoát</a></li>
+                                                    <li><a href="#">Sơ mi</a></li>
+                                                    <li><a href="#">Quần jeans</a></li>
+                                                    <li><a href="#">Quần short</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -85,42 +84,42 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                             <div class="size__list">
                                 <label for="xxs">
                                     xxs
-                                    <input type="checkbox" name="xxs" id="xxs">
+                                    <input type="checkbox" id="xxs">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="xs">
                                     xs
-                                    <input type="checkbox" name="xs" id="xs">
+                                    <input type="checkbox" id="xs">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="xss">
                                     xs-s
-                                    <input type="checkbox" id="xss" name="xss">
+                                    <input type="checkbox" id="xss">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="s">
                                     s
-                                    <input type="checkbox" id="s" name="s">
+                                    <input type="checkbox" id="s">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="m">
                                     m
-                                    <input type="checkbox" id="m" name="m">
+                                    <input type="checkbox" id="m">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="ml">
                                     m-l
-                                    <input type="checkbox" id="ml" name="ml">
+                                    <input type="checkbox" id="ml">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="l">
                                     l
-                                    <input type="checkbox" id="l" name="l">
+                                    <input type="checkbox" id="l">
                                     <span class="checkmark"></span>
                                 </label>
                                 <label for="xl">
                                     xl
-                                    <input type="checkbox" id="xl" name="xl">
+                                    <input type="checkbox" id="xl">
                                     <span class="checkmark"></span>
                                 </label>
                             </div>
@@ -128,9 +127,9 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">
-                    <div class="row" id="box_products">
+                    <div class="row">
                         <?php
-                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale, product_size FROM products " . ($type == "sale" ? "where product_sale > 0" : ($type != null ? "where product_type = '" . $type . "' and product_sub_type = '" . $subtype . "' " : "")) . " order by product_created_at";
+                        $sql_product = "SELECT product_id, product_name, product_price, product_rate, product_type, product_sale FROM products where product_sale > 0 order by product_created_at";
                         $sql_image = "SELECT product_image_id, product_id, product_image FROM product_images where image_tag = 'avt'";
                         $productList = get_product($sql_product, $sql_image);
                         foreach ($productList as $product) {
@@ -143,74 +142,19 @@ $subtype = @isset($_GET['subtype']) ? $_GET['subtype'] : null;
                             $new = false;
                             $out_of_stock = false;
                             $id = $product->get_product_id();
-                            $size = $product->get_size();
                             include dirname(dirname(__FILE__)) . "/components/product_item/product_item2.php";
                         }
                         ?>
-                        <!-- <div class="col-lg-12 text-center">
+                        <div class="col-lg-12 text-center">
                             <div class="pagination__option">
                                 <a href="#">1</a>
                                 <a href="#">2</a>
                                 <a href="#">3</a>
                                 <a href="#"><i class="fa fa-angle-right"></i></a>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
-                <script>
-                    function filter() {
-                        const xxs = document.getElementById('xxs').checked;
-                        const xs = document.getElementById('xs').checked;
-                        const xss = document.getElementById('xss').checked;
-                        const s = document.getElementById('s').checked;
-                        const m = document.getElementById('m').checked;
-                        const ml = document.getElementById('ml').checked;
-                        const l = document.getElementById('l').checked;
-                        const xl = document.getElementById('xl').checked;
-                        const box_products = document.getElementById('box_products');
-                        const product_item2 = document.getElementsByClassName('product_item2');
-
-                        if (!xxs && !xs && !xss && !s && !m && !ml && !l && !xl) {
-                            for (let i = 0; i < product_item2.length; i++) {
-                                product_item2[i].style.display = 'block';
-                            }
-                            return;
-                        }
-
-                        for (let i = 0; i < product_item2.length; i++) {
-                            const size = product_item2[i].querySelector('#size').value;
-                            if (size == 'xxs' && xxs) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 'xs' && xs) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 'xss' && xss) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 's' && s) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 'm' && m) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 'ml' && ml) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 'l' && l) {
-                                product_item2[i].style.display = 'block';
-                            } else if (size == 'xl' && xl) {
-                                product_item2[i].style.display = 'block';
-                            } else {
-                                product_item2[i].style.display = 'none';
-                            }
-                        }
-                    }
-
-                    document.getElementById('xxs').addEventListener('change', filter);
-                    document.getElementById('xs').addEventListener('change', filter);
-                    document.getElementById('xss').addEventListener('change', filter);
-                    document.getElementById('s').addEventListener('change', filter);
-                    document.getElementById('m').addEventListener('change', filter);
-                    document.getElementById('ml').addEventListener('change', filter);
-                    document.getElementById('l').addEventListener('change', filter);
-                    document.getElementById('xl').addEventListener('change', filter);
-                    
-                </script>
             </div>
         </div>
     </section>

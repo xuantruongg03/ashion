@@ -11,10 +11,22 @@
                 </div>
             </div>
             <div class="d-flex flex-row align-items-center " style="justify-content: between;">
-                <div style="width: 70px;">
+                <div style="width: 90px; display: flex; align-items: center;">
+                    <form action="/ashion/src/controllers/quantity_cart.php" method="post">
+                        <input type="text" hidden name="action" value="mins_cart">
+                        <input type="text" hidden name="cart_id" value="<?php echo $cart_id ?>">
+                        <input type="text" hidden name="product_id" value="<?php echo $product_id ?>">
+                        <button style="cursor: pointer; border:none; background-color: white; font-size: 16px; margin-right: 5px;">-</button>
+                    </form>
                     <h5 class="fw-normal mb-0" style="font-size: 14px;">SL: <?php echo $quantity ?></h5>
+                    <form action="/ashion/src/controllers/quantity_cart.php" method="post">
+                        <input type="text" hidden name="action" value="plus_cart">
+                        <input type="text" hidden name="cart_id" value="<?php echo $cart_id ?>">
+                        <input type="text" hidden name="product_id" value="<?php echo $product_id ?>">
+                        <button style="cursor: pointer; border:none; background-color: white; font-size: 16px; margin-left: 5px;">+</button>
+                    </form>
                 </div>
-                <div >
+                <div>
                     <h5 class="mb-0" style="width: 150px; font-size: 14px;"><?php echo number_format($total_price, 0, '', '.') ?> VNĐ</h5>
                 </div>
                 <a href="/ashion/src/controllers/delete_cart.php?id=<?php echo $cart_id ?>" style="color: red; width: 20px;"><i class="fa fa-solid fa-trash"></i></a>
