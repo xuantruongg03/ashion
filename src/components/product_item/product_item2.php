@@ -40,7 +40,13 @@
                 ?>
             </div>
             <!-- Hiển thị giá sản phẩm -->
-            <div class="product__price"><?php echo number_format($product_price, 0, '', '.') ?> VNĐ</div>
+            <?php 
+            if ($sale > 0) {
+                $product_price_sale = $product_price - $product_price * $sale / 100;
+                echo '<div class="product__price" style="text-decoration: line-through; font-weight:500; font-size: 14px;">' . number_format($product_price, 0, '', '.') . ' VNĐ</div>';
+            }
+            ?>
+            <div class="product__price"><?php echo number_format($product_price_sale, 0, '', '.') ?> VNĐ</div>
         </div>
     </div>
 </form>

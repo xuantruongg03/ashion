@@ -67,7 +67,7 @@ function get_cart_product($username)
     mysqli_set_charset($conn, "utf8");
 
     $sql = "SELECT cart_id, products.product_name, products.product_id, products.product_price, 
-        cart.product_detail, product_images.product_image, cart.cart_quantity, cart.total_price
+        cart.product_detail, product_images.product_image, cart.cart_quantity, cart.total_price, products.product_sale
     FROM ((cart inner join users on users.user_id = cart.user_id) 
             inner join products on products.product_id = cart.product_id)
             inner join product_images on products.product_id = product_images.product_id

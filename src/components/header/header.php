@@ -151,7 +151,7 @@ if (isset($_SESSION['username'])) {
         <div class="search-model">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="search-close-switch">+</div>
-                <form class="search-model-form" action="/ashion/src/controllers/find.php">
+                <form class="search-model-form" action="/ashion/src/controllers/find.php" method="post">
                     <input type="text" name="search" id="search" placeholder="Tìm kiếm.....">
                 </form>
             </div>

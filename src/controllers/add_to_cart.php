@@ -12,10 +12,10 @@ if (isset($_POST['product_id'])) {
     $result = mysqli_query($conn, $sql);
 
     //get product price
-    $a = "SELECT product_price FROM products WHERE product_id = $product_id";
+    $a = "SELECT product_price, product_sale FROM products WHERE product_id = $product_id";
     $b = mysqli_query($conn, $a);
     $row = mysqli_fetch_assoc($b);
-    $product_price = $row['product_price'];
+    $product_price = $row['product_price'] - ($row['product_price'] * $row['product_sale'] / 100);
 
     if (mysqli_num_rows($result) == 0) {
         $sql = "INSERT INTO cart (user_id, product_id, cart_quantity, total_price) VALUES ($user_id, $product_id, 1, $product_price)";

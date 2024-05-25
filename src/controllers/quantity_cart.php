@@ -6,11 +6,12 @@ if(isset($_POST["action"])){
     $cart_id = $_POST["cart_id"];
     $product_id = $_POST["product_id"];
 
-    // Get product price
+    // Get product price, product sale
     $sql1 = "SELECT * FROM products WHERE product_id = $product_id";
     $result1 = mysqli_query($conn, $sql1);
     $row1 = mysqli_fetch_assoc($result1);
     $pr = $row1["product_price"];
+    $sale = $row1["product_sale"];
 
     //Get cart quantity
     $sql2 = "SELECT * FROM cart WHERE cart_id = $cart_id";
@@ -20,6 +21,7 @@ if(isset($_POST["action"])){
 
     $sql = "";
     if($_POST["action"] == "plus_cart"){
+        $pr = $pr - ($pr * $sale / 100);
         $sql = "UPDATE cart SET cart_quantity = cart_quantity + 1, total_price = total_price + $pr WHERE cart_id = $cart_id";
     }
     if($_POST["action"] == "mins_cart"){
@@ -27,6 +29,7 @@ if(isset($_POST["action"])){
             echo "<script>alert('Số lượng sản phẩm không thể nhỏ hơn 1')</script>";
             header("Location: /ashion/src/pages/cart.php");
         }
+        $pr = $pr - ($pr * $sale / 100);
         $sql = "UPDATE cart SET cart_quantity = cart_quantity - 1, total_price = total_price - $pr WHERE cart_id = $cart_id";
     }
 
